@@ -1,0 +1,56 @@
+Langchain ChatChat window下部署指南
+一：电脑配置
+设备参数：
+CPU处理器：13th Gen Intel® Core™ i5-13600KF × 20
+操作系统:	Uubntu22.04.3LTS
+显存:	NVIDIA GeForce RTX 4060 Ti 
+内存：	32.0 GiB
+Cuda	12.1
+二：步骤流程
+ # 拉取仓库
+$ git clone https://github.com/chatchat-space/Langchain-Chatchat.git
+Conda 创建环境
+$ conda create -n langchain python=3.10
+$ conda activate langchain
+pip config set global.index-url https://pypi.org/simple/
+# 进入目录
+$ cd Langchain-Chatchat
+1 打开 requirements.txt 文件，注释掉第48行
+
+
+2打开 requirements_api.txt 文件，注释掉第46行
+
+3 执行命令安装
+$ pip install -r requirements.txt 
+$ pip install -r requirements_api.txt
+$ pip install -r requirements_webui.txt  
+
+4 执行命令
+$ conda install jq
+$ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+$ python copy_config_example.py
+
+$ python init_database.py --recreate-vs
+
+5  修改配置文件Config/model_config.py
+先下载chatglm3-6b 以及 bge-large-zh 两个模型解压到本地
+5.1 embeding模型路径修改
+修改为本地模型路径
+
+
+5.2 model模型路径修改
+
+
+6 运行web界面
+python startup.py --all-webui
+
+自动打开界面
+
+部署完成
+
+
+
+
+
+
+
